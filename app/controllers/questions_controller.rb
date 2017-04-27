@@ -1,6 +1,8 @@
 # List Questions
 get '/questions' do
-  "All questions"
+  @questions = Question.all
+  @total_questions = Question.all.count
+  erb :'questions/index'
 end
 
 # form for new Question
@@ -10,6 +12,7 @@ end
 
 # Create new Question
 post '/questions' do
+  # Todo - Need to capture user id.
   @question = Question.create(params[:question])
   if @question.valid?
     redirect '/questions'
@@ -22,7 +25,7 @@ end
 # Show Specific Question
 get '/questions/:id' do
   @question = Question.find_by(id: params[:id])
-  erb :'questions/question_view'
+  erb :'questions/view'
 end
 
 # Edit form for specific question
@@ -38,4 +41,10 @@ end
 # delete specific question
 delete '/questions/:id' do
   "Delete question"
+end
+
+
+# FOR TESTING
+get '/' do
+  erb :'ben_test'
 end

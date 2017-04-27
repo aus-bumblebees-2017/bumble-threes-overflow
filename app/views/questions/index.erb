@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>All Questions</h1>
+  <h2>Total Questions: <%= @total_questions %></h2>
+  <div class="question">
+<% @questions.each do |question| %>
+<%= erb :'questions/_question', layout: false, locals: { question: question } %>
+<% end %>
+  </div>
+</div>

@@ -5,4 +5,17 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :votable
 
   validates :title, :description, presence: true
+
+  def total_votes
+    self.votes.count
+  end
+
+  def total_answers
+    self.answers.count
+  end
+
+  def time_since_creation
+    ((Time.now - created_at) / 3600).round
+  end
+
 end
