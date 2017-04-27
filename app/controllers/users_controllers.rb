@@ -16,13 +16,18 @@ post '/users' do
 end
 
 get '/users/:id' do
-
-  erb :'users/home'
+  if current_user
+    erb :'users/home'
+  else
+    redirect "/"
+  end
 end
 
 delete '/users/:id' do
+  if current_user
   user = User.find_by_id(params[:id])
   #maybe delete all its info? or make it annonymous
   user.destroy
+  end
   redirect "/"
 end
