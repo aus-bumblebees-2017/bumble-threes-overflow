@@ -1,4 +1,9 @@
 <div>
+<% if @errors %>
+<% @errors.each do |error| %>
+<p><%= error %></p>
+<% end%>
+<% end%>
 <form method="POST" action="/users">
 <label for="username">Display Name</label><br>
 <input type="text" name="username"/><br><br>
@@ -9,7 +14,7 @@
 <button>Sign up</button><br>
 
 <div>
-<p> Already have an account? <a href="#">Log in</a>
+<p> Already have an account? <a href="/sessions/new">Log in</a>
 </div>
 
 </form>

@@ -1,4 +1,7 @@
 <div>
+<% if @errors %>
+<p class = "error"><%= @errors %></p>
+<% end %>
 <form method="POST" action="/sessions">
 <label for="username">Username</label><br>
 <input type="text" name="username"/><br><br>

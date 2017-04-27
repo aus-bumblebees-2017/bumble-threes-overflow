@@ -19,3 +19,10 @@ get '/users/:id' do
 
   erb :'users/home'
 end
+
+delete '/users/:id' do
+  user = User.find_by_id(params[:id])
+  #maybe delete all its info? or make it annonymous
+  user.destroy
+  redirect "/"
+end
