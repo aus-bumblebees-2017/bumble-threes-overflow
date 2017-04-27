@@ -1,0 +1,8 @@
+  <div id="answer_<%= answer.id %>">
+    <p><%= answer.description %></p>
+    <a href="/question/">Edit</a> | <a href="#">Del</a>
+    <div class="author">
+      <p>answered <%= answer.date %></p>
+      <p><%= answer.author.username %></p>
+    </div>
+  </div>
