@@ -1,0 +1,10 @@
+<h1>Comments Home Page</h1>
+<ul>
+<% @comments.each do |comment| %>
+  <li>
+    <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
+  </li>
+<% end %>
+</ul>
+<a href="/comments/new">Create a Comment</a>
+
