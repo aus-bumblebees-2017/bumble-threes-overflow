@@ -7,5 +7,15 @@ post '/users' do
   @user = User.new({username: params[:username], email: params[:email]})
   @user.password = params[:hash_pw]
   @user.save
-  redirect '/sessions/new'
+  if @user.valid?
+    redirect '/sessions/new'
+  else
+    @errors = @user.errors.full_messages
+    erb :'users/new'
+  end
+end
+
+get '/users/:id' do
+
+  erb :'users/home'
 end

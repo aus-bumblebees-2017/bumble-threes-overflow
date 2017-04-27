@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :answers, foreign_key: :author_id
   has_many :votes, foreign_key: :author_id
 
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
+
   def password
     @password ||= BCrypt::Password.new(hash_pw)
   end
