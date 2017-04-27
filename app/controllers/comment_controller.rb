@@ -29,7 +29,6 @@ post '/comments/:id/edit' do
   @comment=Comment.find(params[:id])
   @comment.description = params[:comment_description]
   @comment.save
-  binding.pry
   erb :'comments/comment', locals: {comment: @comment}
 end
 get '/comments/:id/delete' do
