@@ -1,0 +1,6 @@
+    <article id="<% question.id %>" class="question_wrapper">
+      <div class="one"><%= question.total_votes %><br>votes</div>
+      <div class="two"><a href="/questions/<%= question.id %>"><%= question.title %></a></div>
+      <div class="three"><%= question.total_answers %><br>answers</div>
+      <div class="four">Asked <%= question.time_since_creation %> hours ago by <%= question.author.username %></div>
+    </article>
