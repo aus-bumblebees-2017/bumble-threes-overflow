@@ -12,8 +12,9 @@ end
 
 # Create new Question
 post '/questions' do
-  # Todo - Need to capture user id.
-  @question = Question.create(params[:question])
+  quest = params[:question]
+  quest[:author] = User.find_by(id: 1) # this will need to be set by session
+  @question = Question.create(quest)
   if @question.valid?
     redirect '/questions'
   else
@@ -30,12 +31,26 @@ end
 
 # Edit form for specific question
 get '/questions/:id/edit' do
-  "Edit question"
+  @question = Question.find_by(id: params[:id])
+  erb :'questions/edit'
 end
 
 # Update Specific question
 put '/questions/:id' do
-  "Update question post"
+  @question = Question.find_by(id: params[:id])
+  @question.update(params[:question])
+  if @question.valid?
+    redirect "/questions/#{params[:id]}"
+  else
+    @errors = @question.errors.full_messages
+    erb :'questions/edit'
+  end
+end
+
+get '/questions/:id/delete' do
+  @question = Question.find_by(id: params[:id])
+  @question.destroy
+  redirect '/questions'
 end
 
 # delete specific question

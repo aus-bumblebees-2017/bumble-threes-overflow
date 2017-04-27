@@ -9,11 +9,12 @@
     </ul>
     <% end %>
   </div>
-  <form action="/questions" method="POST">
+  <form action="/questions/<%= @question.id %>" method="POST">
+    <input type="hidden" name="_method" value="put">
     <label for="question[title]">Title</label>
     <input type="text" name="question[title]" value="<%= @question.try(:title) %>"><br>
     <label for="question[description]">Question</label>
     <textarea name="question[description]"><%= @question.try(:description) %></textarea>
-    <input type="submit" value="Save">
+    <input type="submit" value="Save Changes">
   </form>
 </div>

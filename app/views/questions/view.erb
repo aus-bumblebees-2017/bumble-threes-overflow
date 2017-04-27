@@ -4,7 +4,7 @@
     <p>Code for upvote/downvote can go here</p>
     <p><%= @question.description %></p>
     <p>
-      <a href="#">Edit</a> | <a href="#">Delete</a>
+      <a href="/questions/<%= @question.id %>/edit">Edit</a> | <a href="/questions/<%= @question.id %>/delete">Delete</a>
     </p>
   </article>
 </div>

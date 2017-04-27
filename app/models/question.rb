@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
   end
 
   def time_since_creation
-    ((Time.now - created_at) / 3600).round
+    ((Time.now - self.created_at) / 3600).round
   end
 
 end
