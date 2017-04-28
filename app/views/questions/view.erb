@@ -9,6 +9,7 @@
   </article>
   <section class="answers">
     <h3>Answers</h3>
+    <p><a href="/questions/<%= @question.id %>/answers/new">New Answer</a></p>
 <% @question.answers.each do |answer| %>
 <%= erb :'answers/_answer', layout: false, locals: {answer: answer } %>
 <% end %>

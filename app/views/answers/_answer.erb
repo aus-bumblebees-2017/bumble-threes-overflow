@@ -1,6 +1,6 @@
   <div id="answer_<%= answer.id %>">
     <p><%= answer.description %></p>
-    <a href="/question/">Edit</a> | <a href="#">Del</a>
+    <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/edit">Edit</a> | <a href="/questions/<%=answer.question.id%>/answers/<%=answer.id%>/delete">Del</a>
     <div class="author">
       <p>answered <%= answer.date %></p>
       <p><%= answer.author.username %></p>

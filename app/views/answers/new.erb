@@ -10,8 +10,9 @@
     <% end %>
   </div>
   <form action="/questions/<%= @question.id %>/answers" method="POST">
-    <label for="answer[description]">Answer</label>
-    <textarea name="answer[description]"><%= @answer.try(:description) %></textarea>
+    <label for="description">Answer</label><br>
+    <textarea name="description"><%= @answer.try(:description) %></textarea>
+    <br>
     <input type="submit" value="Save">
   </form>
 </div>
