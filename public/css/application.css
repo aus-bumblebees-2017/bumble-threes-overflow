@@ -1,0 +1,30 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+  text-align: center;
+}
+
+.question_wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(auto);
+}
+.one {
+  grid-column: 1;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+.three {
+  grid-row: 2;
+  grid-column: 1;
+}
+.four {
+  grid-column: 2 / 4;
+  grid-row: 2;
+}

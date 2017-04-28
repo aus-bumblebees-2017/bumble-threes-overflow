@@ -7,5 +7,12 @@
       <a href="/questions/<%= @question.id %>/edit">Edit</a> | <a href="/questions/<%= @question.id %>/delete">Delete</a>
     </p>
   </article>
+  <section class="answers">
+    <h3>Answers</h3>
+    <p><a href="/questions/<%= @question.id %>/answers/new">New Answer</a></p>
+<% @question.answers.each do |answer| %>
+<%= erb :'answers/_answer', layout: false, locals: {answer: answer } %>
+<% end %>
+  <section>
 </div>
 

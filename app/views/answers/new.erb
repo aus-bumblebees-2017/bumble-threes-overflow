@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="errors">
+    <% if @errors %>
+    <p>The following errors where received:</p>
+    <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+    </ul>
+    <% end %>
+  </div>
+  <form action="/questions/<%= @question.id %>/answers" method="POST">
+    <label for="description">Answer</label><br>
+    <textarea name="description"><%= @answer.try(:description) %></textarea>
+    <br>
+    <input type="submit" value="Save">
+  </form>
+</div>
