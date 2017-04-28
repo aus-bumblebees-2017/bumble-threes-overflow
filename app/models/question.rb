@@ -6,11 +6,13 @@ class Question < ActiveRecord::Base
 
   validates :title, :description, presence: true
 
-  def total_votes
-    self.votes.count
+  def vote_total
+    total=0
+    self.votes.each {|v| total+=v.weight}
+    total
   end
 
-  def total_answers
+  def answers_total
     self.answers.count
   end
 
