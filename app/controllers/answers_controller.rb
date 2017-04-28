@@ -60,3 +60,16 @@ get '/questions/:question_id/answers/:id/vote/:weight' do
   Vote.add_vote(@answer, params[:weight], current_user)
   redirect "/questions/#{params[:question_id]}"
 end
+
+get '/questions/:question_id/answers/:id/best' do
+  @answer = Answer.find_by(id: params[:id])
+  @answer.question.answers.each do |a|
+    if a.best_answer == true
+      a.best_answer == false
+      a.save
+    end
+  end
+  @answer.best_answer = true
+  @answer.save
+  redirect "/questions/#{params[:question_id]}"
+end
