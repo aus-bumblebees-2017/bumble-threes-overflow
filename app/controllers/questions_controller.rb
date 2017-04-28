@@ -79,5 +79,5 @@ end
 
 # FOR TESTING
 get '/' do
-  erb :'ben_test'
+  redirect "/questions"
 end
