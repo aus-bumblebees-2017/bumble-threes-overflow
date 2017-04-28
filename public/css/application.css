@@ -31,8 +31,23 @@ body {
   background-color: #fcfcfc;
 }
 
+.form-partial {
+  width: 400px;
+  padding: 20px 20px 20px 40px;
+  background-color: #fcfcfc;
+}
+
+.outside{
+  margin: 20px auto;
+  margin-top: 80px;
+}
+
 a {
   color: #EE9831;
+}
+
+.section-title{
+  text-align: center;
 }
 
 /*******************HEADER***************/

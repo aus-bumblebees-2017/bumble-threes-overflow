@@ -1,4 +1,4 @@
-<div class= "container">
+<div class= "form-partial <% if commentable_type == 'a' %> outside<%end %>">
 <form method='post' action='/comments/new/<%= commentable_id %>/<%= commentable_type%>'>
   <label>Comment:</label><br>
   <textarea name='comment_description'>
