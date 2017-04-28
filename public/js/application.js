@@ -3,7 +3,6 @@ $(document).ready(function() {
     console.log("fired");
     event.preventDefault();
     var $answer = $(this);
-    console.log($answer.attr("action"))
     $.ajax({
       url: $answer.attr("action"),
       method: $answer.attr("method"),
@@ -14,4 +13,17 @@ $(document).ready(function() {
       $("textarea").val("");
     });
   });
-});
+  $(".container").on("click", ".vote", function(e) {
+    console.log("vote");
+    event.preventDefault();
+    var $vote = $(this);
+
+    $.ajax({
+      url: $vote.attr("href"),
+      method: "GET"
+    })
+    .done(function(resp) {
+      $vote.siblings("span.vote_count").text(resp.vote_count)
+    });
+  });
+})
