@@ -69,7 +69,12 @@ end
 get '/questions/:id/vote/:weight' do
   @question = Question.find_by(id: params[:id])
   Vote.add_vote(@question, params[:weight], current_user)
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    content_type :json
+    {vote_count: @question.vote_total}.to_json
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 # FOR TESTING

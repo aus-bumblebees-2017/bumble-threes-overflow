@@ -2,10 +2,10 @@
   <section>
     <h3><%= @question.title %></h3>
     <p>asked by <%= @question.author.username %> <%= @question.time_since_creation %> hours ago</p>
-    <p><%= @question.vote_total %> vote<%= "s" if @question.vote_total > 1 %> :
+    <p><span class="vote_count"><%= @question.vote_total %></span> vote<%= "s" if @question.vote_total > 1 %> :
       <% if current_user %>
-        <a href="/questions/<%= @question.id %>/vote/1">Up Vote</a> : <a href="/questions/<%= @question.id %>/vote/0">Null Vote
-        </a> : <a href="/questions/<%= @question.id %>/vote/-1">Down Vote</a>
+        <a href="/questions/<%= @question.id %>/vote/1" class="vote">Up Vote</a> : <a href="/questions/<%= @question.id %>/vote/0" class="vote">Null Vote
+        </a> : <a href="/questions/<%= @question.id %>/vote/-1" class="vote">Down Vote</a>
       <% end %>
     <p><%= @question.description %></p>
 <% if @user == @question.author %>
