@@ -9,6 +9,11 @@
     </p>
 <% end %>
   </article>
+  <div class="question_comments">
+<% @question.comments.each do |comment| %>
+  <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
+<% end %>
+  </div>
   <section class="answers">
     <h3>Answers</h3>
     <p><a href="/questions/<%= @question.id %>/answers/new">New Answer</a></p>
