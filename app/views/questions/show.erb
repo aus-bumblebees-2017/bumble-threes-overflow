@@ -1,13 +1,31 @@
 <div class="container">
   <article>
     <h1><%= @question.title %></h1>
-    <p>Code for upvote/downvote can go here</p>
-    <p><%= @question.description %></p>
+    <div class="question_wrapper">
+      <div class="one">
+      <% if current_user %>
+        <a href="/questions/<%= @question.id %>/vote/1">Up Vote</a><br>
+        <%= @question.votes.count %> Votes<br>
+        <a href="/questions/<%= @question.id %>/vote/-1">Down Vote</a><br>
+        <a href="/questions/<%= @question.id %>/vote/0">Null Vote
+        </a>
+      <% end %>
+      </div>
+      <div class="two">
+        <p><%= @question.description %></p>
+      </div>
+      <div class="three">
 <% if @user == @question.author %>
-    <p>
-      <a href="/questions/<%= @question.id %>/edit">Edit</a> | <a href="/questions/<%= @question.id %>/delete">Delete</a>
-    </p>
+        <p>
+          <a href="/questions/<%= @question.id %>/edit">Edit</a> | <a href="/questions/<%= @question.id %>/delete">Delete</a>
+        </p>
 <% end %>
+      </div>
+      <div class="four">
+        <p>Asked <%= @question.created_at %></p>
+        <p><%= @question.author.username %></p>
+      </div>
+    </div>
   </article>
   <div class="question_comments">
 <% @question.comments.each do |comment| %>

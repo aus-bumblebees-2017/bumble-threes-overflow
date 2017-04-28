@@ -7,6 +7,14 @@
       <p>answered <%= answer.date %></p>
       <p><%= answer.author.username %></p>
     </div>
+    <div class="votes">
+<% if current_user %>
+      <p><%= answer.votes.count %></p>
+      <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/1">Up vote</a><br>
+      <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/-1">Down vote</a><br>
+      <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/0">Null vote</a><br>
+<% end %>
+    </div>
     <div class="answer_comment">
 <% answer.comments.each do |comment| %>
   <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
