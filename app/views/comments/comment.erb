@@ -2,7 +2,8 @@
   <p><%= comment.description %></p>
   <p>
     <span class='votes'><%= comment.vote_total %></span>
-    <span class='author'><%= comment.author %></span>
+    <span class='author'><%= (comment.author&&comment.author.username)||"Anon" %></span>
+    <span class='created_at'><%= comment.created_at.localtime %></span>
     <span class='updated_at'><%= comment.updated_at.localtime %></span>
     <a href="/comments/<%=comment.id%>/edit">edit</a>
     <a href="/comments/<%=comment.id%>/delete">delete</a>

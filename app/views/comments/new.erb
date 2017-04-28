@@ -1,7 +1,9 @@
-<h1>New Comment</h1>
+<h1>New Comment for <%= current_user.username||"Anon" %></h1>
 <form method='post' action='/comments/new'>
   <label>Comment:</label>
   <textarea name='comment_description'>
   </textarea>
   <button type='submit_comment' name='submit_comment' >Submit Comment</button>
 </form>
+<a href="/sessions/new">login</a>
+<a href="/users/new">register</a>

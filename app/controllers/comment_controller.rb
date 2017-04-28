@@ -8,8 +8,14 @@ get '/comments/new' do
   erb :'comments/new'
 end
 post '/comments/new' do
-  @comment=Comment.create(description: params[:comment_description])
-
+  if current_user == nil
+    @comment=Comment.create(description: params[:comment_description])
+  else
+    @comment=Comment.create(
+      description: params[:comment_description],
+      author: current_user
+      )
+  end
 
   erb :"comments/comment", locals: {comment: @comment}
 end
@@ -27,19 +33,19 @@ get '/comments/:id/edit' do
 end
 get '/comments/:id/upvote' do
   @comment = Comment.find(params[:id])
-  Vote.add_vote(@comment,1)
+  Vote.add_vote(@comment,1,current_user)
   erb :'comments/comment', locals: {comment: @comment}
 
 end
 get '/comments/:id/downvote' do
   @comment = Comment.find(params[:id])
-  Vote.add_vote(@comment,-1)
+  Vote.add_vote(@comment,-1,current_user)
   erb :'comments/comment', locals: {comment: @comment}
 
 end
 get '/comments/:id/nullvote' do
   @comment = Comment.find(params[:id])
-  Vote.add_vote(@comment,0)
+  Vote.add_vote(@comment,0,current_user)
   erb :'comments/comment', locals: {comment: @comment}
 
 end
