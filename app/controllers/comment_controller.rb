@@ -27,11 +27,19 @@ get '/comments/:id/edit' do
 end
 get '/comments/:id/upvote' do
   @comment = Comment.find(params[:id])
+  Vote.add_vote(@comment,1)
+  erb :'comments/comment', locals: {comment: @comment}
 
-  @vote = Vote.find_or_create_by(votable_id: @comment.id)
-  @vote.weight=1
-  @vote.save
+end
+get '/comments/:id/downvote' do
+  @comment = Comment.find(params[:id])
+  Vote.add_vote(@comment,-1)
+  erb :'comments/comment', locals: {comment: @comment}
 
+end
+get '/comments/:id/nullvote' do
+  @comment = Comment.find(params[:id])
+  Vote.add_vote(@comment,0)
   erb :'comments/comment', locals: {comment: @comment}
 
 end
