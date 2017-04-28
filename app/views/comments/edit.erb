@@ -1,5 +1,7 @@
+<div class="container">
 <h1>Edit Comment:<%= current_user.username%></h1>
 <form method='post' action='/comments/<%= @comment.id %>/edit'>
 <textarea name="comment_description"><%= @comment.description %></textarea>
   <button type='submit'>Submit</button>
 </form>
+</div>
