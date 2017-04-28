@@ -1,11 +1,11 @@
 <article id="<%=vote.id%>">
-    <span class='id'><%= vote.id%></span>
-    <span class='weight'><%= vote.weight %></span>
+    <span class='id'><%= vote.id%>:</span>
+    <span class='weight'>(<%= vote.weight %>)</span>
     <span class='author'><%= (vote.author&&vote.author.username) || "Anon" %></span>
     <span class='votable_type'><%= vote.votable_type %></span>
     <span class='votable_id'><%= vote.votable_id %></span>
-    <span class='created_at'><%= vote.created_at.localtime %></span>
-    <span class='updated_at'><%= vote.updated_at.localtime %></span>
+    <span class='created_at'><%= vote.created_at.localtime.strftime("%FT%R") %></span>
+    <span class='updated_at'><%= vote.updated_at.localtime.strftime("%FT%R") %></span><br>
     <a href="/votes/<%=vote.id%>">edit (NOOP)</a>
     <a href="/votes/<%=vote.id%>/delete">delete</a>
     <a href="/votes/<%=vote.id%>/upvote">up vote</a>
