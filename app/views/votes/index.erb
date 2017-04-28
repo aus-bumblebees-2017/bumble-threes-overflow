@@ -1,5 +1,6 @@
-<div class="container">
-<h1>Votes Page<%= current_user.username%></h1>
+<div class='container'>
+<h1>Votes Page:<%= current_user.username%></h1>
+
 <ul>
 <% @votes.each do |vote| %>
   <li>

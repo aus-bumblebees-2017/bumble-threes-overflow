@@ -66,6 +66,11 @@ delete '/questions/:id' do
   "Delete question"
 end
 
+get '/questions/:id/vote/:weight' do
+  @question = Question.find_by(id: params[:id])
+  Vote.add_vote(@question, params[:weight], current_user)
+  redirect "/questions/#{params[:id]}"
+end
 
 # FOR TESTING
 get '/' do
