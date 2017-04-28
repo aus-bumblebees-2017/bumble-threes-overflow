@@ -1,4 +1,4 @@
-<h1>Votes Page</h1>
+<h1>Votes Page<%= current_user.username%></h1>
 <ul>
 <% @votes.each do |vote| %>
   <li>
@@ -6,5 +6,5 @@
   </li>
 <% end %>
 </ul>
-<a href="/votes/new">Create a vote</a>
+<a href="/comments">Create a vote on comments</a>
 
