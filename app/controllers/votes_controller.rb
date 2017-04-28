@@ -1,4 +1,4 @@
-before '/votes/*'
+before '/votes/*' do
   current_user
   redirect '/sessions/new' if @user.nil?
 end
