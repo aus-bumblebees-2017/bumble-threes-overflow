@@ -43,21 +43,27 @@ get '/comments/:id/upvote' do
   redirect '/sessions/new' if @user.nil?
   @comment = Comment.find(params[:id])
   Vote.add_vote(@comment,1,current_user)
-  erb :'comments/comment', locals: {comment: @comment}
+  redirect back
+
+  # erb :'comments/comment', locals: {comment: @comment}
 
 end
 get '/comments/:id/downvote' do
   redirect '/sessions/new' if @user.nil?
   @comment = Comment.find(params[:id])
   Vote.add_vote(@comment,-1,current_user)
-  erb :'comments/comment', locals: {comment: @comment}
+  redirect back
+
+  # erb :'comments/comment', locals: {comment: @comment}
 
 end
 get '/comments/:id/nullvote' do
   redirect '/sessions/new' if @user.nil?
   @comment = Comment.find(params[:id])
   Vote.add_vote(@comment,0,current_user)
-  erb :'comments/comment', locals: {comment: @comment}
+  redirect back
+
+  # erb :'comments/comment', locals: {comment: @comment}
 
 end
 post '/comments/:id/edit' do
@@ -71,11 +77,11 @@ end
 get '/comments/:id/delete' do
   redirect '/sessions/new' if @user.nil?
   @comment = Comment.find(params[:id])
-  redirect "/comments/#{params[:id]}" if @user!=@comment.author
+  redirect back if @user!=@comment.author
   @comment.delete
 
 # NOTE: need to go back to invoking site.
-  redirect '/comments'
+  redirect back
 
 end
 
