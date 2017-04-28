@@ -1,23 +1,29 @@
-  <div id="answer_<%= answer.id %>">
-    <p><%= answer.description %></p>
-<% if current_user == answer.author %>
-    <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/edit">Edit</a> | <a href="/questions/<%=answer.question.id%>/answers/<%=answer.id%>/delete">Del</a>
+  <div id="answer_<%= answer.id %>" style="border: 1px dotted grey">
+<% if answer.best_answer %>
+  <h3>***Marked Best Answer***</h3>
 <% end %>
-    <div class="author">
-      <p>answered <%= answer.date %></p>
-      <p><%= answer.author.username %></p>
-    </div>
-    <div class="votes">
-<% if current_user %>
-      <p><%= answer.votes.count %></p>
-      <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/1">Up vote</a><br>
-      <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/-1">Down vote</a><br>
-      <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/0">Null vote</a><br>
+    <p>answered by <%= answer.author.username %> <%= answer.time_since_creation %> hours ago</p>
+    <p><%= answer.vote_total %> vote<%= "s" if answer.vote_total > 1 %> :
+      <% if current_user %>
+        <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/1">Up Vote</a> : <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/0">Null Vote
+        </a> : <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/vote/-1">Down Vote</a>
+      <% end %>
+<% if @user == answer.question.author %>
+    : <a class="mark-best" href="/questions/<%= answer.question.id%>/answers/<%= answer.id %>/best">Mark Best</a>
 <% end %>
-    </div>
-    <div class="answer_comment">
+    </p>
+      <p><%= answer.description %></p>
+<% if @user == answer.author %>
+        <p>
+          <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/edit">Edit</a> | <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/delete">Delete</a>
+        </p>
+<% end %>
+  <section class="question_comments" style="margin: 30px">
+<% if answer.comments.count != 0 %>
+    <p>Comments:</p>
+<% end %>
 <% answer.comments.each do |comment| %>
   <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
 <% end %>
-    </div>
+  </section>
   </div>

@@ -1,43 +1,40 @@
 <div class="container">
-  <article>
-    <h1><%= @question.title %></h1>
-    <div class="question_wrapper">
-      <div class="one">
+  <section>
+    <h3><%= @question.title %></h3>
+    <p>asked by <%= @question.author.username %> <%= @question.time_since_creation %> hours ago</p>
+    <p><%= @question.vote_total %> vote<%= "s" if @question.vote_total > 1 %> :
       <% if current_user %>
-        <a href="/questions/<%= @question.id %>/vote/1">Up Vote</a><br>
-        <%= @question.votes.count %> Votes<br>
-        <a href="/questions/<%= @question.id %>/vote/-1">Down Vote</a><br>
-        <a href="/questions/<%= @question.id %>/vote/0">Null Vote
-        </a>
+        <a href="/questions/<%= @question.id %>/vote/1">Up Vote</a> : <a href="/questions/<%= @question.id %>/vote/0">Null Vote
+        </a> : <a href="/questions/<%= @question.id %>/vote/-1">Down Vote</a>
       <% end %>
-      </div>
-      <div class="two">
-        <p><%= @question.description %></p>
-      </div>
-      <div class="three">
+    <p><%= @question.description %></p>
 <% if @user == @question.author %>
         <p>
           <a href="/questions/<%= @question.id %>/edit">Edit</a> | <a href="/questions/<%= @question.id %>/delete">Delete</a>
         </p>
 <% end %>
-      </div>
-      <div class="four">
-        <p>Asked <%= @question.created_at %></p>
-        <p><%= @question.author.username %></p>
-      </div>
-    </div>
-  </article>
-  <div class="question_comments">
+  </section>
+  <hr>
+  <section class="question_comments">
+    <p>Comments:</p>
 <% @question.comments.each do |comment| %>
   <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
 <% end %>
-  </div>
+<% if current_user %>
+<%= erb :'comments/new', layout: false %>
+<% end %>
+  </section>
+  <hr>
   <section class="answers">
-    <h3>Answers</h3>
-    <p><a href="/questions/<%= @question.id %>/answers/new">New Answer</a></p>
+  <h3>Answers:</h3>
 <% @question.answers.each do |answer| %>
 <%= erb :'answers/_answer', layout: false, locals: {answer: answer } %>
 <% end %>
+  </section>
   <section>
+<% if current_user %>
+<%= erb :'answers/new', layout: false %>
+<% end %>
+  </section>
 </div>
 

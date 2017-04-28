@@ -7,4 +7,15 @@ class Answer < ActiveRecord::Base
   def date
     self.created_at.strftime("%b %d '%y at %H:%M")
   end
+
+  def time_since_creation
+    ((Time.now - self.created_at) / 3600).round
+  end
+
+  def vote_total
+    total=0
+    self.votes.each {|v| total+=v.weight}
+    total
+  end
+
 end
