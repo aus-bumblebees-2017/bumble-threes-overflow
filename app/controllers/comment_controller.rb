@@ -12,7 +12,7 @@ get '/comments/new' do
 
   erb :'comments/new'
 end
-post '/comments/new' do
+post '/comments/new/:id/:type' do
   redirect '/sessions/new' if @user.nil?
   if current_user == nil
     @comment=Comment.create(description: params[:comment_description])
@@ -22,8 +22,20 @@ post '/comments/new' do
       author: current_user
       )
   end
+  if params[:type] == "q"
+    commentable = Question.find(params[:id])
+    commentable.comments << @comment
+    commentable.save
+    redirect back
+  else
+    commentable = Answer.find(params[:id])
+    commentable.comments << @comment
+    commentable.save
+    question = commentable.question
+    redirect "/questions/#{question.id}"
+  end
 
-  erb :"comments/comment", locals: {comment: @comment}
+  # erb :"comments/comment", locals: {comment: @comment}
 end
 get '/comments/:id' do
   @comment = Comment.find(params[:id])

@@ -73,3 +73,12 @@ get '/questions/:question_id/answers/:id/best' do
   @answer.save
   redirect "/questions/#{params[:question_id]}"
 end
+
+get "/answers/:answer_id/comments/new" do
+  commentable_id = params[:answer_id]
+  commentable_type ="a"
+
+  erb :'comments/new', locals: {commentable_id: commentable_id, commentable_type: commentable_type}
+end
+
+
