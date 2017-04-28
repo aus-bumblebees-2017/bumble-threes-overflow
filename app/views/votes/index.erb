@@ -1,0 +1,10 @@
+<h1>Votes Page</h1>
+<ul>
+<% @votes.each do |vote| %>
+  <li>
+    <%= erb :'votes/vote', layout: false, locals: {vote: vote} %>
+  </li>
+<% end %>
+</ul>
+<a href="/votes/new">Create a vote</a>
+

@@ -16,13 +16,31 @@ end
 get '/comments/:id' do
   @comment = Comment.find(params[:id])
 
-  erb :'comments/comment'
+  erb :'comments/comment', locals: {comment: @comment}
 
 end
 get '/comments/:id/edit' do
   @comment = Comment.find(params[:id])
 
   erb :'comments/edit'
+
+end
+get '/comments/:id/upvote' do
+  @comment = Comment.find(params[:id])
+  Vote.add_vote(@comment,1)
+  erb :'comments/comment', locals: {comment: @comment}
+
+end
+get '/comments/:id/downvote' do
+  @comment = Comment.find(params[:id])
+  Vote.add_vote(@comment,-1)
+  erb :'comments/comment', locals: {comment: @comment}
+
+end
+get '/comments/:id/nullvote' do
+  @comment = Comment.find(params[:id])
+  Vote.add_vote(@comment,0)
+  erb :'comments/comment', locals: {comment: @comment}
 
 end
 post '/comments/:id/edit' do
