@@ -7,4 +7,8 @@ class Comment < ActiveRecord::Base
     self.votes.each {|v| total+=v.weight}
     total
   end
+
+  def time_since_creation
+    ((Time.now - self.created_at) / 3600).round
+  end
 end

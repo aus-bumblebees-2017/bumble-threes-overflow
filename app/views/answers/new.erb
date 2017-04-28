@@ -9,7 +9,7 @@
     </ul>
     <% end %>
   </div>
-  <form action="/questions/<%= @question.id %>/answers" method="POST">
+  <form class="answer-form" action="/questions/<%= @question.id %>/answers" method="POST">
     <label for="description">Answer</label><br>
     <textarea name="description"><%= @answer.try(:description) %></textarea>
     <br>

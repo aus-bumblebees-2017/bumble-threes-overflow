@@ -8,16 +8,18 @@ end
 # Create new Answer for question
 post '/questions/:question_id/answers' do
   @question = Question.find_by(id: params[:question_id])
-  #need to fix user
-
   @answer = Answer.create({description: params[:description], author: current_user})
   if @answer.valid?
     @question.answers << @answer
     @question.save
-    redirect "/questions/#{@question.id}"
+    if request.xhr?
+      erb :'answers/_answer', layout: false, locals: {answer: @answer}
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
     @errors = @answer.errors.full_messages
-    erb :'answers/new'
+    erb :'answers/new', layout: false, locals: {}
   end
 end
 

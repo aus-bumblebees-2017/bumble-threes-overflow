@@ -1,14 +1,15 @@
-<article id="<%=comment.id%>">
+<article id="comment_<%=comment.id%>">
+  <p><%= comment.time_since_creation %> ago, <%= comment.author.username %> said:<p>
   <p><%= comment.description %></p>
+<% if current_user == comment.author %>
   <p>
-    <span class='votes'><%= comment.vote_total %></span>
-    <span class='author'><%= (comment.author&&comment.author.username)||"Anon" %></span>
-    <span class='created_at'><%= comment.created_at.localtime %></span>
-    <span class='updated_at'><%= comment.updated_at.localtime %></span>
     <a href="/comments/<%=comment.id%>/edit">edit</a>
     <a href="/comments/<%=comment.id%>/delete">delete</a>
-    <a href="/comments/<%=comment.id%>/upvote">up vote</a>
-    <a href="/comments/<%=comment.id%>/downvote">down vote</a>
-    <a href="/comments/<%=comment.id%>/nullvote">set vote to neutral</a>
   </p>
+<% end %>
+  <p><%= comment.vote_total %> vote<%= "s" if comment.vote_total > 1 %> :
+    <% if current_user %>
+      <a href="/comments/<%=comment.id%>/upvote">Up Vote</a> : <a href="/comments/<%=comment.id%>/nullvote">Null Vote</a> : <a href="/comments/<%=comment.id%>/downvote">Down Vote</a>
+    <% end %>
 </article>
+<hr>
