@@ -117,6 +117,12 @@ img.logo {
   grid-auto-rows: minmax(auto);
 }
 
+.answer-box{
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  padding-left: 20px;
+}
+
 /*User home page***/
 .delete{
   text-align: right;

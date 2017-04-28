@@ -19,6 +19,9 @@
 
   <section class="question_comments">
     <p>Comments:</p>
+<% if @question.comments == [] %>
+  <p>No comments!</p>
+<% end %>
 <% @question.comments.each do |comment| %>
   <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
 <% end %>
@@ -31,6 +34,9 @@
 
   <section class="answers">
   <h3>Answers:</h3>
+<% if @question.answers == [] %>
+  <p>No answers yet!</p>
+<% end %>
 <% @question.answers.each do |answer| %>
 <%= erb :'answers/_answer', layout: false, locals: {answer: answer } %>
 <% end %>
