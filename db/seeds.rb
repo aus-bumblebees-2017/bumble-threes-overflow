@@ -5,9 +5,9 @@ users = []
 
   username = Faker::Name.name
   email = username.downcase.delete(" ") + "@faker.com"
-  password = SecureRandom.hex(10)
+  password = "password"
 
-  users << User.create(username: username, email: email, hash_pw: password)
+  users << User.create(username: username, email: email, password: password)
 end
 
 
@@ -45,7 +45,7 @@ my_comments = []
   parent.save
 end
 
-200.times do 
+200.times do
   author = users.sample
   vesels = questions+ answers + my_comments
   parent = vesels.sample

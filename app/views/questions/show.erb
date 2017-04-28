@@ -3,9 +3,11 @@
     <h1><%= @question.title %></h1>
     <p>Code for upvote/downvote can go here</p>
     <p><%= @question.description %></p>
+<% if @user == @question.author %>
     <p>
       <a href="/questions/<%= @question.id %>/edit">Edit</a> | <a href="/questions/<%= @question.id %>/delete">Delete</a>
     </p>
+<% end %>
   </article>
   <section class="answers">
     <h3>Answers</h3>
