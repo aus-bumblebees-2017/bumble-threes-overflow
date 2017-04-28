@@ -1,0 +1,21 @@
+<div>
+<h1> <%= current_user.username %>'s homepage </h1>
+<a href="/sessions/logout"/>Log out </a>
+<% if current_user.questions %>
+<h2> Recient articles </h2>
+<ul>
+<% current_user.questions.each do |question| %>
+<li><a href ="/questions/<%= question.id %>"><%= question.title %></a></li>
+<% end %>
+</ul>
+<% end %>
+<% if current_user.questions %>
+<h2> Recient comments </h2>
+<ul>
+<% current_user.comments.each do |comment| %>
+<li><a href ="/comments/<%= comment.id %>"><%= comment.title %></a></li>
+<% end %>
+</ul>
+<% end %>
+<a class= "delete" href='/users/<%= current_user.id %>'>Delete my account</a>
+</div>

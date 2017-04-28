@@ -17,6 +17,7 @@ require 'logger'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
+enable :sessions
 
 require 'erb'
 require 'pry'
