@@ -14,22 +14,27 @@
         </p>
 <% end %>
   </section>
+
   <hr>
+
   <section class="question_comments">
     <p>Comments:</p>
 <% @question.comments.each do |comment| %>
   <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
 <% end %>
 <% if current_user %>
-<%= erb :'comments/new', layout: false %>
+<%= erb :'comments/new', layout: false, locals: {commentable_id: @question.id, commentable_type: 'q'} %>
 <% end %>
   </section>
+
   <hr>
+
   <section class="answers">
   <h3>Answers:</h3>
 <% @question.answers.each do |answer| %>
 <%= erb :'answers/_answer', layout: false, locals: {answer: answer } %>
 <% end %>
+
   </section>
   <section>
 <% if current_user %>

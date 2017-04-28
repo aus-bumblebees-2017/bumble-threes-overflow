@@ -25,5 +25,6 @@
 <% answer.comments.each do |comment| %>
   <%= erb :'comments/comment', layout: false, locals: {comment: comment} %>
 <% end %>
+<a href="/answers/<%= answer.id %>/comments/new" class= "flush right">comment on this answer </a>
   </section>
   </div>
