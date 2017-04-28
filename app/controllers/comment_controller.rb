@@ -34,6 +34,7 @@ end
 get '/comments/:id/edit' do
   redirect '/sessions/new' if @user.nil?
   @comment = Comment.find(params[:id])
+  redirect "/comments/#{params[:id]}" if @user!=@comment.author
 
   erb :'comments/edit'
 
@@ -62,13 +63,16 @@ end
 post '/comments/:id/edit' do
   redirect '/sessions/new' if @user.nil?
   @comment=Comment.find(params[:id])
+  redirect "/comments/#{params[:id]}" if @user!=@comment.author
   @comment.description = params[:comment_description]
   @comment.save
   erb :'comments/comment', locals: {comment: @comment}
 end
 get '/comments/:id/delete' do
   redirect '/sessions/new' if @user.nil?
-  @comment = Comment.find(params[:id]).delete
+  @comment = Comment.find(params[:id])
+  redirect "/comments/#{params[:id]}" if @user!=@comment.author
+  @comment.delete
 
 # NOTE: need to go back to invoking site.
   redirect '/comments'
