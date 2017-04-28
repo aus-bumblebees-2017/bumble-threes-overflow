@@ -43,6 +43,7 @@ end
 
 # Update Specific question
 put '/questions/:id' do
+  redirect '/sessions/new' if @user.nil?
   @question = Question.find_by(id: params[:id])
   @question.update(params[:question])
   if @question.valid?
@@ -54,6 +55,7 @@ put '/questions/:id' do
 end
 
 get '/questions/:id/delete' do
+  redirect '/sessions/new' if @user.nil?
   @question = Question.find_by(id: params[:id])
   @question.destroy
   redirect '/questions'
