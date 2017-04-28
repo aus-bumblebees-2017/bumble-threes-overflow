@@ -1,3 +1,7 @@
+before '/votes/*'
+  current_user
+  redirect '/sessions/new' if @user.nil?
+end
 get '/votes' do
   @votes = Vote.all
   erb :'votes/index'
